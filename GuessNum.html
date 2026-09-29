@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Number</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      h1 {
+        font-size: 20px;
+        padding-left: 40px;
+        padding-top: 20px;
+        color: green;
+      }
+      .main {
+        height: 50vh;
+        width: 50%;
+        margin-left: 20%;
+        margin-top: 9%;
+        background-color: #b99494;
+        box-shadow: 0px 0px 2px 2px rgba(10, 69, 69, 0.6);
+      }
+
+      .input_N {
+        height: 40px;
+        width: 30%;
+        border-radius: 10px;
+        margin-top: 50px;
+        margin-left: 50px;
+      }
+      button {
+        height: 40px;
+        width: 10%;
+        border-radius: 10px;
+        background-color: rgb(109, 159, 109);
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Guess The Number</h1>
+      <input type="Number" class="input_N" />
+      <button class="btn_Check" type="submit">submit</button>
+      <button class="reset">reset</button>
+      <div class="result_div"></div>
+    </div>
+    <script>
+      const input = document.querySelector(".input_N");
+      const check = document.querySelector(".btn_Check");
+      const reset = document.querySelector(".reset");
+
+      let random = Math.floor(Math.random() * 10) + 1;
+      let result = document.querySelector(".result_div");
+      let res;
+      console.log(random);
+      const display = function () {
+        const input_guess = input.value;
+
+        if (input_guess > random) {
+          res = `Your number is higher. Your guess is ${input_guess}`;
+          result.textContent = res;
+          res.style.color = "red";
+          result.style.marginTop = "12px";
+        } else if (input_guess < random) {
+          res = `Your number is lower. Your guess is ${input_guess}`;
+          result.textContent = res;
+          result.style.color = "red";
+          result.style.marginTop = "12px";
+        } else if (input_guess == random) {
+          res = `You guessed right. Your guess was ${input_guess} and the random number was ${random} too. `;
+          result.textContent = res;
+          result.style.color = "green";
+          result.style.marginTop = "12px";
+        } else {
+          res = `You guessed wrong.Your guess was ${input_guess} and the random number was ${random}`;
+          result.textContent = res;
+          result.style.color = "red";
+          result.style.marginTop = "12px";
+          console.log(
+            `You guessed wrong.Your guess was ${input_guess} and the random number was ${random}`,
+          );
+        }
+      };
+      reset.addEventListener("click", function () {
+        input.value = "";
+        random = Math.floor(Math.random() * 10) + 1;
+        console.log(random);
+      });
+      check.addEventListener("click", display);
+    </script>
+  </body>
+</html>
